@@ -1,71 +1,85 @@
-# 🌾 OptiCrop – Smart Agricultural Production Optimization System
+# 🌾 OptiCrop – Entity Relationship Diagram Documentation
 
-```mermaid
-erDiagram
+## 📌 Project Overview
 
-    👤 USER {
-        int user_id PK
-        string name
-        string email
-        string password
-        string phone_number
-    }
+**OptiCrop** is an intelligent agricultural decision-support system designed to optimize crop production using soil analysis and machine learning techniques. The system assists farmers in selecting suitable crops based on environmental and soil conditions.
 
-    🌱 SOILDATA {
-        int soil_id PK
-        int user_id FK
-        float nitrogen
-        float phosphorus
-        float potassium
-        float temperature
-        float humidity
-        float ph
-        float rainfall
-    }
+---
 
-    🌾 CROP {
-        int crop_id PK
-        string crop_name
-        string crop_type
-        string description
-    }
+## 📖 Introduction
 
-    📂 DATASET {
-        int dataset_id PK
-        string dataset_name
-        string source
-        date upload_date
-    }
+The Entity Relationship (ER) Diagram defines the database structure of the OptiCrop system. It illustrates the entities, attributes, primary keys, foreign keys, and relationships required to manage agricultural data, machine learning models, crop predictions, and recommendation reports.
 
-    🤖 MLMODEL {
-        int model_id PK
-        int dataset_id FK
-        string model_name
-        string algorithm
-        float accuracy
-    }
+The database is designed to ensure efficient data storage, maintain data integrity, and support intelligent crop prediction processes.
 
-    📊 PREDICTION {
-        int prediction_id PK
-        int soil_id FK
-        int crop_id FK
-        int model_id FK
-        date prediction_date
-        float confidence_score
-    }
+---
 
-    📑 REPORT {
-        int report_id PK
-        int prediction_id FK
-        date report_date
-        string recommendation
-        string summary
-    }
+## 🗂 Main Entities
 
-    USER ||--o{ SOILDATA : "🌱 submits"
-    SOILDATA ||--|| PREDICTION : "🤖 generates"
-    CROP ||--o{ PREDICTION : "🌾 recommended"
-    DATASET ||--o{ MLMODEL : "📂 trains"
-    MLMODEL ||--o{ PREDICTION : "📊 produces"
-    PREDICTION ||--o{ REPORT : "📑 creates"
-```
+### 👤 User
+
+Stores farmer and system user information.
+
+### 🌱 SoilData
+
+Maintains soil nutrient values and environmental parameters collected from agricultural fields.
+
+### 🌾 Crop
+
+Contains crop details, classifications, and descriptions.
+
+### 📂 Dataset
+
+Stores information about datasets used for training machine learning models.
+
+### 🤖 MLModel
+
+Represents the machine learning models used for crop prediction.
+
+### 📊 Prediction
+
+Stores prediction results generated from soil data and trained models.
+
+### 📑 Report
+
+Maintains recommendation reports and summaries generated from prediction results.
+
+---
+
+## 🔗 Relationships
+
+* One user can submit multiple soil records.
+* Each soil record produces a crop prediction.
+* A crop may appear in multiple prediction results.
+* One dataset can train multiple machine learning models.
+* One model can generate many predictions.
+* A prediction can produce multiple reports and recommendations.
+
+---
+
+## 🔑 Primary Keys
+
+* User → user_id
+* SoilData → soil_id
+* Crop → crop_id
+* Dataset → dataset_id
+* MLModel → model_id
+* Prediction → prediction_id
+* Report → report_id
+
+---
+
+## 🔐 Foreign Keys
+
+* SoilData.user_id → User.user_id
+* Prediction.soil_id → SoilData.soil_id
+* Prediction.crop_id → Crop.crop_id
+* Prediction.model_id → MLModel.model_id
+* Report.prediction_id → Prediction.prediction_id
+
+---
+
+## ✅ Conclusion
+
+The ER Diagram provides a well-structured database design for the OptiCrop system. It establishes relationships among users, soil information, crops, machine learning models, predictions, and reports. This architecture enables efficient data management and supports data-driven agricultural decision-making for smart farming applications.
+
