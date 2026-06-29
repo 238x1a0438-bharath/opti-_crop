@@ -4,16 +4,6 @@
 
 ### Smart Agricultural Production Optimization System
 
-🌱 *Predict the right crop with Machine Learning.*
-
-![Python](https://img.shields.io/badge/Python-3.10-blue?style=flat-square\&logo=python)
-![ML](https://img.shields.io/badge/Machine-Learning-green?style=flat-square)
-![Streamlit](https://img.shields.io/badge/Streamlit-App-red?style=flat-square\&logo=streamlit)
-
-</div>
-
----
-
 ## 🌟 About
 
 OptiCrop is an intelligent crop recommendation system that helps farmers choose the best crop based on soil and environmental conditions.
